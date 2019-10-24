@@ -124,7 +124,6 @@ export default class App extends Component {
     const response = await req('/api/board/list')
     const json = await response.json()
     const board = json.result
-    console.log(json, board)
     this.setState({ board })
   }
 
@@ -158,6 +157,8 @@ export default class App extends Component {
       </View> : null
   }
 
+  _keyExtractor = (item, index) => String(index)
+
   render() {
     let text = 'Waiting..'
     if (this.state.errorMessage) {
@@ -166,11 +167,16 @@ export default class App extends Component {
       text = this.state.address
     }
 
-    console.log('this.state.board', this.state.board)
     return (
       <View style={styles.container}>
         <Text style={styles.paragraph}>{text}</Text>
         <SafeAreaView style={{backgroundColor:'blue', width: '100%', flex: 1}}>
+          <FlatList
+            data={this.state.board}
+            renderItem={this.getItem}
+            keyExtractor={this._keyExtractor}
+          />
+
         </SafeAreaView>
         <KeyboardAvoidingView style={{position: 'absolute', left: 0, right: 0, bottom: 0}} behavior="position">
           <TextInput
