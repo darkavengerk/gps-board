@@ -4,7 +4,7 @@ import Constants from 'expo-constants'
 import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions'
 
-const SERVER_ADDR = 'http://ec2-13-211-212-5.ap-southeast-2.compute.amazonaws.com:20666'
+const SERVER_ADDR = 'http://ec2-3-104-192-32.ap-southeast-2.compute.amazonaws.com:20666'
 
 function req(addr, opt) {
   return fetch(SERVER_ADDR + addr, opt? opt : {})
